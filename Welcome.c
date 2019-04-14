@@ -10,10 +10,8 @@ void driveToEdge(){
   print("Drive to edge\n");
   print("Inputs: %d", input(12));
   drive_ramp(100, 100);
-  while(1){
-    if(!input(12)){
-      return;
-    }  
+  pause(5000);
+  while(!input(12)){  
     if(input(0)){
       drive_speed(0,0);
       return;
@@ -48,18 +46,21 @@ void clean(){
   bool dir = false;
   driveToEdge(dir);
   while(true){
+      print("Edge1234!\n");
     if(!input(12)){
       return;
     }      
-    print("Edge!\n");
+  
     switchLane((dir=!dir));
     driveToEdge();
   }    
 }  
 int main()                                    // Main function
 {
+  drive_servoPins(16, 13);
   high(1);
   high(26);
+  print("pin 12: %d\n", input(12));
   int yMovement;
   int xMovement;
   while(true){
